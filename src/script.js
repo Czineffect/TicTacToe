@@ -11,8 +11,8 @@ const winnningCombos = [
     [0, 4, 8],
     [2, 4, 6]
 ]; 
-const player1 = {"name": "X", "color":"blue"} 
-const player2 = {"name": "O", "color":"green"} 
+const player1 = {"name": "X", "color":"#1E90FF"} 
+const player2 = {"name": "O", "color":"#20B2AA"} 
 const squares = document.querySelectorAll(".square"); 
 const message = document.querySelector("#winner"); 
 var currentPlayer = player1;   
@@ -30,8 +30,8 @@ function clickHandler(e){
 		else{
 			currentPlayer = player1; 
 		}
-		let possibleMoves = checkPossibleMoves();
-		if(!possibleMoves)
+
+		if(checkPossibleMoves())
 		{
 			message.innerHTML = "DRAW"
 		}
@@ -43,6 +43,7 @@ for(let i = 0; i < squares.length; i++) {
 	squares[i].addEventListener('click', function(e){ clickHandler(e)}, false); 
 }
 
+//Check winner 
 function checkForWinner(squares, player)
 {
 
@@ -60,13 +61,15 @@ function checkForWinner(squares, player)
 		
 	}
 }
+//Check if there's no more possible moves 
 function checkPossibleMoves()
 {
 	if(squares[0].innerHTML && squares[1].innerHTML && squares[2].innerHTML && squares[3].innerHTML &&
 	squares[4].innerHTML && squares[5].innerHTML && squares[6].innerHTML && squares[7].innerHTML && squares[8].innerHTML){
-		return false;
+		return true;
 	}
 }
+//Remove text and css classes from grids
 function restartGame()
 {
 	squares.forEach(function(e){
